@@ -19,8 +19,8 @@ Every resource method accepts an optional `raw` flag as the last argument.
 **Parsed (default)** — attributes are merged to the top level, relationships are simplified to arrays:
 
 ```ts
-// song.data[0].name        ← from attributes
-// song.data[0].artistName  ← from attributes
+// song.data[0].name              ← from attributes
+// song.data[0].artistName        ← from attributes
 // song.data[0].relationships.albums[0].id  ← simplified
 ```
 
@@ -43,6 +43,24 @@ All methods return the same wrapper type:
   error: string | null // Error message if the request failed
 }
 ```
+
+## Error Handling
+
+Check the `error` field before accessing data:
+
+```ts
+const result = await musicKit.songs.get("us", "invalid-id")
+
+if (result.error) {
+  console.error(`Request failed (${result.status}):`, result.error)
+  return
+}
+
+// safe to access data when error is null
+console.log(result.data)
+```
+
+When a request fails, `data` will be `null` and `error` will contain the response body.
 
 ## Available Resources
 

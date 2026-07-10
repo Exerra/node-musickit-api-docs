@@ -152,6 +152,57 @@ type MusicVideo = {
 }
 ```
 
+## Relationship Types
+
+Relationships link resources together. Parsed responses simplify them to arrays; raw responses preserve the full structure.
+
+```ts
+interface Datum {
+  id: string
+  type: string   // e.g. "songs", "albums", "artists"
+  href: string
+}
+
+// Parsed: array of datums
+type GenericRelationship = Datum[]
+
+// Raw: object with href and nested data array
+type GenericRelationshipRaw = {
+  href: string
+  data: Datum[]
+}
+```
+
+Albums have a special `tracks` relationship where each track includes its full attributes inline:
+
+```ts
+// Parsed
+type TrackRelationship = SongRaw[]
+
+// Raw
+type TrackRelationshipRaw = {
+  href: string
+  data: SongRaw[]
+}
+```
+
+### Per-Resource Relationship Maps
+
+```ts
+type SongRelationships = Partial<Record<"albums" | "artists", GenericRelationship>>
+
+type AlbumRelationships = {
+  artists: GenericRelationship
+  tracks: TrackRelationship
+}
+
+type ArtistRelationships = {
+  albums: GenericRelationship
+}
+
+type MusicVideoRelationships = Partial<Record<"albums" | "artists", GenericRelationship>>
+```
+
 ## Shared Types
 
 ```ts

@@ -1,43 +1,54 @@
 ---
 title: Resources Overview
-description: How resource methods work
+description: How resource accessors and methods work
 ---
 
-All resource methods follow the same pattern. They accept a `storefront` and an identifier, plus an optional `raw` flag.
+Access specific catalog resources via lazy-loaded getters on the `MusicKit` instance:
+
+```ts
+musicKit.songs        // SongsResource
+musicKit.albums       // AlbumsResource
+musicKit.artists      // ArtistsResource
+musicKit.musicVideos  // MusicVideosResource
+```
 
 ## Parsed vs Raw
 
-By default (no `raw` flag), the API returns flattened objects — the `attributes` are merged to the top level and `relationships` are simplified:
+Every resource method accepts an optional `raw` flag as the last argument.
+
+**Parsed (default)** — attributes are merged to the top level, relationships are simplified to arrays:
 
 ```ts
-// Parsed (default)
-const song = await musicKit.songs.get("us", "123")
-// song.data[0].name          — from attributes
-// song.data[0].artistName    — from attributes
-// song.data[0].relationships — simplified
+// song.data[0].name        ← from attributes
+// song.data[0].artistName  ← from attributes
+// song.data[0].relationships.albums[0].id  ← simplified
+```
 
-// Raw
-const raw = await musicKit.songs.get("us", "123", true)
+**Raw (`true`)** — the original Apple Music API shape, with nested `attributes` and `relationships` containing `href` and `data`:
+
+```ts
 // raw.data[0].attributes.name
 // raw.data[0].relationships.albums.href
-// raw.data[0].relationships.albums.data
+// raw.data[0].relationships.albums.data[0].id
 ```
 
 ## Result Wrapper
 
-All methods return a `MusicKitResultWrapper`:
+All methods return the same wrapper type:
 
 ```ts
 {
-  status: number   // HTTP status code
-  data: T          // The response data
-  error: string | null  // Error message if request failed
+  status: number       // HTTP status code
+  data: T              // Response payload (array of items or search result)
+  error: string | null // Error message if the request failed
 }
 ```
 
 ## Available Resources
 
-- **[Songs](/resources/songs/)** — get by ID or ISRC
-- **[Albums](/resources/albums/)** — get by ID or UPC
-- **[Artists](/resources/artists/)** — get by ID
-- **[Music Videos](/resources/music-videos/)** — get by ID or ISRC
+| Resource | Methods |
+|---|---|
+| [Songs](/resources/songs/) | `get(storefront, id)` · `getByISRC(storefront, isrc)` |
+| [Albums](/resources/albums/) | `get(storefront, id)` · `getByUPC(storefront, upc)` |
+| [Artists](/resources/artists/) | `get(storefront, id)` |
+| [Music Videos](/resources/music-videos/) | `get(storefront, id)` · `getByISRC(storefront, isrc)` |

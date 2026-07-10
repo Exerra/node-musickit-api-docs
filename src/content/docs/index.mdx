@@ -1,40 +1,41 @@
 ---
-title: Welcome to Starlight
-description: Get started building your docs site with Starlight.
-template: splash # Remove or comment out this line to display the site sidebar on this page.
+title: node-musickit-api
+description: A Node.js wrapper for the Apple Music API (MusicKit)
+template: splash
 hero:
-  tagline: Congrats on setting up a new Starlight project!
-  image:
-    file: ../../assets/houston.webp
+  tagline: Search songs, albums, artists, and music videos from the Apple Music catalog.
   actions:
-    - text: Example Guide
-      link: /guides/example/
+    - text: Get Started
+      link: /getting-started/
       icon: right-arrow
-    - text: Read the Starlight docs
-      link: https://starlight.astro.build
+    - text: View on GitHub
+      link: https://github.com/Exerra/node-musickit-api
       icon: external
       variant: minimal
 ---
 
 import { Card, CardGrid } from '@astrojs/starlight/components';
 
-## Next steps
-
-<CardGrid stagger>
-	<Card title="Update content" icon="pencil">
-		Edit `src/content/docs/index.mdx` to see this page change.
-	</Card>
-	<Card title="Change page layout" icon="document">
-		Delete `template: splash` in `src/content/docs/index.mdx` to display a
-		sidebar on this page.
-	</Card>
-	<Card title="Add new content" icon="add-document">
-		Add Markdown or MDX files to `src/content/docs` to create new pages.
-	</Card>
-	<Card title="Configure your site" icon="setting">
-		Edit your `sidebar` and other config in `astro.config.mjs`.
-	</Card>
-	<Card title="Read the docs" icon="open-book">
-		Learn more in [the Starlight Docs](https://starlight.astro.build/).
-	</Card>
+<CardGrid>
+  <Card title="Getting Started" icon="setting">
+    Prerequisites, installation, and Apple Music API key setup.
+  </Card>
+  <Card title="Quickstart" icon="rocket">
+    A complete working example from start to finish.
+  </Card>
+  <Card title="Search" icon="search">
+    Search the Apple Music catalog by term and type.
+  </Card>
+  <Card title="Songs" icon="music">
+    Fetch songs by ID or ISRC.
+  </Card>
+  <Card title="Albums" icon="document">
+    Fetch albums by ID or UPC.
+  </Card>
+  <Card title="Artists" icon="people">
+    Fetch artist details.
+  </Card>
+  <Card title="Music Videos" icon="video">
+    Fetch music videos by ID or ISRC.
+  </Card>
 </CardGrid>

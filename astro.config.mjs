@@ -28,6 +28,7 @@ export default defineConfig({
             { label: 'Albums', slug: 'resources/albums' },
             { label: 'Artists', slug: 'resources/artists' },
             { label: 'Music Videos', slug: 'resources/music-videos' },
+            { label: 'Storefronts', slug: 'resources/storefronts' },
           ],
         },
         { label: 'Types', slug: 'reference/types' },

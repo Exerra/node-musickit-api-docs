@@ -10,6 +10,7 @@ musicKit.songs        // SongsResource
 musicKit.albums       // AlbumsResource
 musicKit.artists      // ArtistsResource
 musicKit.musicVideos  // MusicVideosResource
+musicKit.storefronts  // StorefrontsResource
 ```
 
 ## Parsed vs Raw
@@ -70,3 +71,4 @@ When a request fails, `data` will be `null` and `error` will contain the respons
 | [Albums](/resources/albums/) | `get(storefront, id)` · `getByUPC(storefront, upc)` |
 | [Artists](/resources/artists/) | `get(storefront, id)` |
 | [Music Videos](/resources/music-videos/) | `get(storefront, id)` · `getByISRC(storefront, isrc)` |
+| [Storefronts](/resources/storefronts/) | `getAll(props?)` · `get(storefront, props?)` |

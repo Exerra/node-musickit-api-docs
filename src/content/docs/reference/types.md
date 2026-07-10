@@ -152,6 +152,46 @@ type MusicVideo = {
 }
 ```
 
+## Storefront / StorefrontRaw
+
+```ts
+type Storefront = {
+  id: string
+  explicitContentPolicy: string   // "allowed" | "denied" | "opt-in"
+  name: string                    // e.g. "United States"
+  defaultLanguageTag: string      // e.g. "en-US"
+  supportedLanguageTags: string[] // e.g. ["en-US", "es-MX"]
+}
+
+// Raw response preserves the nested attributes structure
+interface StorefrontRaw {
+  id: string
+  type: string
+  href: string
+  attributes: {
+    explicitContentPolicy: string
+    name: string
+    defaultLanguageTag: string
+    supportedLanguageTags: string[]
+  }
+}
+```
+
+The `getAll()` and `get()` methods on `StorefrontsResource` also accept optional props:
+
+```ts
+type GetStorefrontsProps = {
+  l?: string       // language tag
+  include?: string[]  // additional resources to include
+  extend?: string[]   // additional fields to extend
+}
+
+type GetAllStorefrontsProps = GetStorefrontsProps & {
+  limit?: number   // results per page
+  offset?: number  // pagination offset
+}
+```
+
 ## Relationship Types
 
 Relationships link resources together. Parsed responses simplify them to arrays; raw responses preserve the full structure.

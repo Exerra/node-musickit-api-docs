@@ -3,7 +3,7 @@ title: Getting Started
 description: Prerequisites, installation, and authentication
 ---
 
-import { Steps, Tabs, TabItem, Aside } from '@astrojs/starlight/components'
+import { Steps, Tabs, TabItem, Aside, Code } from '@astrojs/starlight/components'
 
 
 <Aside type="caution">
@@ -86,10 +86,7 @@ const musicKit = new MusicKit({
 
 Add the key file path to `.gitignore`:
 
-```
-# node-musickit-api
-AuthKey_*.p8
-```
+<Code code={"AuthKey_*.p8"} lang="env" title={".gitignore"} />
 
 ## Authenticate
 

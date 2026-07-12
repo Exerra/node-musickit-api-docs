@@ -3,9 +3,9 @@ import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 
 export default defineConfig({
-  // site: 'https://musickit.js.org',
-  site: "https://exerra.github.io",
-  base: '/node-musickit-api-docs',
+  site: 'https://musickit.js.org',
+  // site: "https://exerra.github.io",
+  // base: '/node-musickit-api-docs',
   integrations: [
     starlight({
       title: 'node-musickit-api',
